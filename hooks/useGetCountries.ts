@@ -26,12 +26,14 @@ const useGetCountries = () => {
     query: GET_COUNTRIES,
   });
 
-  if (!data || loading) {
+  if (!data || loading || error) {
     return null;
   }
 
+  // console.log(data, "here");
+
   return {
-    data,
+    countries: data?.countries,
     loading,
     error,
   };
