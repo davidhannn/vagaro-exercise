@@ -1,6 +1,6 @@
 import { LayoutType } from "@/types/country";
 
-const LayoutOne: React.FC<LayoutType> = ({ name, code, emoji }: LayoutType) => {
+const LayoutTwo: React.FC<LayoutType> = ({ name, code, emoji }: LayoutType) => {
   return (
     <div className="flex flex-row justify-between items-center">
       <p style={{ fontSize: 200, marginRight: 20 }}>{emoji}</p>
@@ -15,4 +15,4 @@ const LayoutOne: React.FC<LayoutType> = ({ name, code, emoji }: LayoutType) => {
   );
 };
 
-export default LayoutOne;
+export default LayoutTwo;

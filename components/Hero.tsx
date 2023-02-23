@@ -2,6 +2,7 @@ import useGetCountry from "@/hooks/useGetCountry";
 import React, { useCallback } from "react";
 import LayoutOne from "@/layouts/layout-one";
 import LayoutDefault from "@/layouts/layout-default";
+import LayoutTwo from "@/layouts/layout-two";
 import { pickBgColorByContinent } from "@/utils/index";
 import { parseCodepoint } from "@/utils/index";
 import { ContinentType } from "@/types/country";
@@ -32,7 +33,7 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
   const changeLayout = () => {
     switch (continent?.code) {
       case "NA":
-        return <LayoutOne name={name} code={countryCode} emoji={emoji} />;
+        return <LayoutTwo name={name} code={countryCode} emoji={emoji} />;
       case "EU":
         return <LayoutOne name={name} code={countryCode} emoji={emoji} />;
       default:
