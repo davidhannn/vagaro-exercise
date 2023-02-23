@@ -1,8 +1,11 @@
 import { request, gql, GraphQLClient } from "graphql-request";
+import { API_URL } from "@/constants";
+import { CountryType } from "@/types/country";
 
 const GET_COUNTRIES = gql`
   query getCountries {
     countries {
+      code
       name
       emoji
       emojiU
@@ -12,16 +15,15 @@ const GET_COUNTRIES = gql`
     }
   }
 `;
-const API_URL = "https://countries.trevorblades.com/graphql";
 
-const useGetCountries = () => {
-  const data = request(API_URL, GET_COUNTRIES).then((data) =>
-    console.log(data)
-  );
-  // const client = new GraphQLClient(API_URL);
-  // client
-  //   .request({ url: API_URL, query: GET_COUNTRIES })
-  //   .then((data) => console.log(data, "data"));
+const useGetCountries = async () => {
+  const data: CountryType[] = await request(API_URL, GET_COUNTRIES);
+
+  console.log(data);
+
+  return {
+    data,
+  };
 };
 
 export default useGetCountries;
