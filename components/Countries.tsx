@@ -6,7 +6,7 @@ const Countries: React.FC = () => {
   const data = useGetCountries();
 
   const { countries, loading, error } = data || {};
-  // console.log(countries, "here");
+
   return (
     <div>
       {countries?.map((country: CountryType) => (

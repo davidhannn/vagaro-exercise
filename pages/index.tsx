@@ -6,16 +6,13 @@ import useGetCountries from "../hooks/useGetCountries";
 import Countries from "@/components/Countries";
 import Hero from "@/components/Hero";
 import { CountryType } from "@/types/country";
+import Dropdown from "@/components/Dropdown";
 
 const Home: React.FC = () => {
   return (
     <div>
+      <Dropdown />
       <Hero />
-      <Countries />
-      {/* {data?.map((country: CountryType, key) => {
-        console.log("yo?");
-        // return <p key={country.code}>{country.name}</p>;
-      })} */}
     </div>
   );
 };
