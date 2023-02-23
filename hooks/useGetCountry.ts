@@ -1,4 +1,6 @@
 import { request, gql, GraphQLClient } from "graphql-request";
+import { useState } from "react";
+import useFetch from "./useFetch";
 import { API_URL } from "@/constants";
 
 const GET_COUNTRY = gql`
@@ -8,6 +10,7 @@ const GET_COUNTRY = gql`
       name
       emoji
       emojiU
+      native
       languages {
         name
       }
@@ -19,15 +22,21 @@ type Props = {
   code: string;
 };
 
-const useGetCountry = async (code: Props) => {
-  const data = await request({
+const useGetCountry = ({ code }: { code: string }) => {
+  const { data, loading, error } = useFetch({
     url: API_URL,
-    document: GET_COUNTRY,
-    variables: { code: "AF" },
+    query: GET_COUNTRY,
+    variables: { code },
   });
 
+  if (!data || loading || error) {
+    return null;
+  }
+
   return {
-    data,
+    country: data?.country,
+    loading,
+    error,
   };
 };
 

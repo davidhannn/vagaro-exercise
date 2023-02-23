@@ -19,7 +19,7 @@ const GET_COUNTRIES = gql`
 `;
 
 const useGetCountries = () => {
-  const [countries, setCountries] = useState<CountryType[] | null>(null);
+  // const [countries, setCountries] = useState<CountryType[] | null>(null);
 
   const { data, loading, error } = useFetch({
     url: API_URL,

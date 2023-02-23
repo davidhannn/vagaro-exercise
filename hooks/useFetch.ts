@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
 import { request, rawRequest, gql, GraphQLClient } from "graphql-request";
 
+import { Variables } from "graphql-request";
+
 type FetchProps = {
   url: string;
   query: string;
+  variables?: Variables;
 };
 
-const useFetch = ({ url, query }: FetchProps) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+const useFetch = ({ url, query, variables = {} }: FetchProps) => {
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | unknown>("");
 
   useEffect(() => {
     async function handleFetch() {
       setLoading(true);
       try {
-        const data = await request(url, query);
+        const data = await request(url, query, variables);
         setData(data);
       } catch (error) {
         setError(error);

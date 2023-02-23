@@ -7,22 +7,9 @@ import Hero from "@/components/Hero";
 import { CountryType } from "@/types/country";
 
 const Home: React.FC = () => {
-  const data = useGetCountries();
-  console.log(data, "data");
-  // console.log(
-  //   data.then((data) => console.log("ye")),
-  //   "why"
-  // );
-
-  // if (data?.loading) {
-  //   return <div></div>;
-  // }
-
   return (
-    <div className="text-3xl font-bold underline">
-      {/* <Hero /> */}
-      <h1>Test</h1>
-      <h2>Hi</h2>
+    <div>
+      <Hero />
 
       {/* {data?.map((country: CountryType, key) => {
         console.log("yo?");
