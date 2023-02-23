@@ -14,6 +14,9 @@ const GET_COUNTRY = gql`
       languages {
         name
       }
+      continent {
+        code
+      }
     }
   }
 `;
