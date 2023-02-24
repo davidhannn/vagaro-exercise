@@ -13,6 +13,7 @@ const LayoutDefault: React.FC<LayoutType> = ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        zIndex: 10,
       }}
     >
       <h1 className="text-5xl mb-5" style={{ fontWeight: 700, fontSize: 30 }}>

@@ -7,6 +7,7 @@ const LayoutTwo: React.FC<LayoutType> = ({ name, code, emoji }: LayoutType) => {
       style={{
         display: "flex",
         flexDirection: "column",
+        zIndex: 10,
       }}
     >
       <p style={{ fontSize: 200 }}>{emoji}</p>

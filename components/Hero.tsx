@@ -1,5 +1,6 @@
 import useGetCountry from "@/hooks/useGetCountry";
 import React, { useCallback, useEffect } from "react";
+import Image from "next/image";
 import LayoutOne from "@/layouts/layout-one";
 import LayoutDefault from "@/layouts/layout-default";
 import LayoutTwo from "@/layouts/layout-two";
@@ -31,7 +32,7 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
     continent,
   } = country || {};
 
-  const changeLayout = () => {
+  const changeLayout = useCallback(() => {
     switch (continent?.code) {
       case CONTINENT_CODES.NA:
       case CONTINENT_CODES.AN:
@@ -42,9 +43,9 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
       default:
         return <LayoutDefault name={name} code={countryCode} emoji={emoji} />;
     }
-  };
+  }, [data]);
 
-  const imageBackground = () => {
+  const imageBackground = useCallback(() => {
     switch (continent?.code) {
       case CONTINENT_CODES.NA:
         return "https://images.pexels.com/photos/290386/pexels-photo-290386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";
@@ -63,8 +64,9 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
       default:
         return "";
     }
-  };
+  }, [data]);
 
+  // TODO Optimize with Next/Image Component
   return (
     <div
       className={"h-screen"}
@@ -74,15 +76,32 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
     >
       <DropdownComponent />
       <div
-        // className="image-background"
-        className={`flex justify-center items-center h-full bg-cover bg-gradient-to-tr from-red-500 to-transparent`}
+        // className="image-wrapper"
+        className={`flex justify-center items-center `}
         style={{
-          backgroundImage: `url(${imageBackground()})`,
+          overflow: "hidden",
+          position: "relative",
+          height: "90%",
         }}
-        // style={{ backgroundColor: pickBgColorByContinent(continent?.code) }}
       >
-        {/* <p className={styles.test}>test</p> */}
         {changeLayout()}
+        <div
+          // className="image-background"
+          alt={`${country?.name}-img`}
+          className="bg-cover"
+          // src={imageBackground()}
+          // fill={true}
+          // className={`flex justify-center items-center h-full bg-cover bg-gradient-to-tr from-red-500 to-transparent`}
+          style={{
+            backgroundImage: `url(${imageBackground()})`,
+            position: "absolute",
+            opacity: 0.3,
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        />
       </div>
     </div>
   );

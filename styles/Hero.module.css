@@ -4,7 +4,12 @@
   color: "white";
 }
 
-.image-background {
+.image-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+/* .image-background {
   position: relative;
   height: 100vh;
   width: 100%;
@@ -23,7 +28,7 @@
   bottom: 0px;
   left: 0px;
   background-color: rgba(0, 0, 0, 0.25);
-}
+} */
 /* &::before {
       content: "";
       background-image: url('https://placekitten.com/1200/800');
