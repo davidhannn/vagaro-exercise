@@ -9,6 +9,7 @@ https://vagaro-exercise.vercel.app/
 - Routing to dynamic Hero Pages through Dropdown component
 
 ## TODO
+- Create Components for Loading and Errors
 - Create Media Queries for different screen sizes
 - Utilize more Tailwind 
 - Update Design of different layouts
