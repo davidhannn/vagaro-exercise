@@ -6,10 +6,11 @@ import { Variables } from "graphql-request";
 type FetchProps = {
   url: string;
   query: string;
-  variables?: Variables;
+
+  variables?: string;
 };
 
-const useFetch = ({ url, query, variables = {} }: FetchProps) => {
+const useFetch = ({ url, query, variables }: FetchProps) => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | unknown>("");
@@ -18,7 +19,7 @@ const useFetch = ({ url, query, variables = {} }: FetchProps) => {
     async function handleFetch() {
       setLoading(true);
       try {
-        const data = await request(url, query, variables);
+        const data = await request(url, query, { code: variables });
         setData(data);
       } catch (error) {
         setError(error);
@@ -29,7 +30,7 @@ const useFetch = ({ url, query, variables = {} }: FetchProps) => {
       }
     }
     handleFetch();
-  }, [url, query]);
+  }, [url, query, variables]);
 
   return { data, loading, error };
 };

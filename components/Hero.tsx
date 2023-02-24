@@ -1,5 +1,5 @@
 import useGetCountry from "@/hooks/useGetCountry";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import LayoutOne from "@/layouts/layout-one";
 import LayoutDefault from "@/layouts/layout-default";
 import LayoutTwo from "@/layouts/layout-two";
@@ -16,6 +16,7 @@ type HeroProps = {
 //  If the image is null, the hero should display a missing image message in its place.
 
 const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
+  console.log(code, "what code is being passed");
   const data = useGetCountry({ code });
 
   const { country, loading, error } = data || {};
@@ -29,8 +30,6 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
     continent,
   } = country || {};
 
-  // console.log(continent);
-
   const changeLayout = () => {
     switch (continent?.code) {
       case "NA":
@@ -43,35 +42,18 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
   };
 
   return (
-    <>
-      {/* <DropdownComponent /> */}
+    <div
+      className={"h-screen"}
+      style={{ backgroundColor: pickBgColorByContinent(continent?.code) }}
+    >
+      <DropdownComponent />
       <div
-        className={`flex justify-center items-center h-screen`}
+        className={`flex justify-center items-center h-full`}
         style={{ backgroundColor: pickBgColorByContinent(continent?.code) }}
       >
         {changeLayout()}
       </div>
-    </>
-    // <div
-    //   className={`flex justify-center items-center h-screen ${pickBgColorByContinent(
-    //     continent?.code
-    //   )}`}
-    // >
-
-    // </div>
-    // <div className="flex justify-center items-center bg-pink-300 h-screen">
-    //   <div className="flex-col justify-center items-center text-center">
-    //     <h1 className="text-5xl mb-5">{name}</h1>
-    //     <h2 className="text-2xl mb-5">{countryCode}</h2>
-
-    //     {/* <p>{String.fromCodePoint(0x1f354)}</p> */}
-    //     <p className="text-7xl">{emoji}</p>
-
-    //     {/* {emojiU && parseCodepoint(emojiU)} */}
-    //     {/* <h1>{country?.name}</h1>
-    //   <h2>{country?.code}</h2> */}
-    //   </div>
-    // </div>
+    </div>
   );
 };
 

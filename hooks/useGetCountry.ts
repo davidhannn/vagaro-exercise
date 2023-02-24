@@ -1,7 +1,6 @@
-import { request, gql, GraphQLClient } from "graphql-request";
-import { useState } from "react";
-import useFetch from "./useFetch";
 import { API_URL } from "@/constants";
+import { gql } from "graphql-request";
+import useFetch from "./useFetch";
 
 const GET_COUNTRY = gql`
   query getCountry($code: ID!) {
@@ -29,7 +28,7 @@ const useGetCountry = ({ code }: { code: string }) => {
   const { data, loading, error } = useFetch({
     url: API_URL,
     query: GET_COUNTRY,
-    variables: { code },
+    variables: code,
   });
 
   if (!data || loading || error) {
