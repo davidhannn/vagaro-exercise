@@ -4,6 +4,7 @@ import LayoutOne from "@/layouts/layout-one";
 import LayoutDefault from "@/layouts/layout-default";
 import LayoutTwo from "@/layouts/layout-two";
 import { pickBgColorByContinent } from "@/utils/index";
+import DropdownComponent from "./Dropdown";
 import { parseCodepoint } from "@/utils/index";
 import { ContinentType } from "@/types/country";
 
@@ -42,12 +43,15 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
   };
 
   return (
-    <div
-      className={`flex justify-center items-center h-screen`}
-      style={{ backgroundColor: pickBgColorByContinent(continent?.code) }}
-    >
-      {changeLayout()}
-    </div>
+    <>
+      {/* <DropdownComponent /> */}
+      <div
+        className={`flex justify-center items-center h-screen`}
+        style={{ backgroundColor: pickBgColorByContinent(continent?.code) }}
+      >
+        {changeLayout()}
+      </div>
+    </>
     // <div
     //   className={`flex justify-center items-center h-screen ${pickBgColorByContinent(
     //     continent?.code
