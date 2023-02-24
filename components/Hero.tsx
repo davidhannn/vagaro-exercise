@@ -7,6 +7,7 @@ import { pickBgColorByContinent } from "@/utils/index";
 import DropdownComponent from "./Dropdown";
 import { parseCodepoint } from "@/utils/index";
 import { ContinentType } from "@/types/country";
+import { CONTINENT_CODES } from "@/constants";
 
 type HeroProps = {
   code?: string;
@@ -16,7 +17,6 @@ type HeroProps = {
 //  If the image is null, the hero should display a missing image message in its place.
 
 const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
-  console.log(code, "what code is being passed");
   const data = useGetCountry({ code });
 
   const { country, loading, error } = data || {};
@@ -32,10 +32,12 @@ const Hero: React.FC<HeroProps> = ({ code = "US" }: HeroProps) => {
 
   const changeLayout = () => {
     switch (continent?.code) {
-      case "NA":
+      case CONTINENT_CODES.NA:
+      case CONTINENT_CODES.AN:
+        return <LayoutDefault name={name} code={countryCode} emoji={emoji} />;
+      case CONTINENT_CODES.AS:
+      case CONTINENT_CODES.EU:
         return <LayoutTwo name={name} code={countryCode} emoji={emoji} />;
-      case "EU":
-        return <LayoutOne name={name} code={countryCode} emoji={emoji} />;
       default:
         return <LayoutDefault name={name} code={countryCode} emoji={emoji} />;
     }

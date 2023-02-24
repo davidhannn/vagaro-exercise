@@ -6,15 +6,25 @@ const LayoutDefault: React.FC<LayoutType> = ({
   code,
   emoji,
 }: LayoutType) => {
-  console.log(pickBgColorByContinent(code), "here");
   return (
-    // <div className={`flex justify-center items-center h-screen`}>
-    <div className="flex-row justify-center items-left text-center">
-      <h1 className="text-5xl mb-5">{name}</h1>
-      <h2 className="text-2xl mb-5">{code}</h2>
-      <p className="text-7xl">{emoji}</p>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <h1 className="text-5xl mb-5" style={{ fontWeight: 700, fontSize: 30 }}>
+        {name}
+      </h1>
+      <p className="text-7xl" style={{ fontSize: 200, marginRight: 20 }}>
+        {emoji}
+      </p>
+      <h2 className="text-3xl mb-5" style={{ fontWeight: 500, fontSize: 16 }}>
+        {code}
+      </h2>
     </div>
-    // </div>
   );
 };
 
