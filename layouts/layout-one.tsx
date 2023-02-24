@@ -2,7 +2,12 @@ import { LayoutType } from "@/types/country";
 
 const LayoutOne: React.FC<LayoutType> = ({ name, code, emoji }: LayoutType) => {
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div
+      className="flex flex-row justify-between items-center"
+      style={{
+        zIndex: 10,
+      }}
+    >
       <p style={{ fontSize: 200, marginRight: 20 }}>{emoji}</p>
 
       <div
